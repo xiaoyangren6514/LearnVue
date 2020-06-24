@@ -49,7 +49,20 @@ module.exports = {
                         // presets: ['@babel/preset-env']
                     }
                 }
+            },
+            {
+                test: /\.vue$/,
+                use: {
+                    loader: 'vue-loader'
+                }
             }
         ]
+    },
+    resolve:{
+        // 解决runtime-only报错问题
+        extensions:['.js','.css','.vue'],
+        alias:{
+            "vue$":'vue/dist/vue.esm.js'
+        }
     }
 }
