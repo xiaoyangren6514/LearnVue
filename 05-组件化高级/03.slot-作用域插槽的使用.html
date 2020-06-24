@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <cpn></cpn>
+        <cpn>
+            <!-- 获取子组件中的数据 -->
+            <template slot-scope="slot">
+                <!-- <span v-for="(item, index) in slot.data" :key="index">
+                    {{item}} - 
+                </span> -->
+                <span>{{slot.data.join(" * ")}}</span>
+            </template>
+        </cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <slot :data="pLanguages">
+                <ul>
+                    <li v-for="(item, index) in pLanguages" :key="index">
+                        {{item}}
+                    </li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+    <script>
+
+        const cpn = {
+            template: "#cpn",
+            data() {
+                return {
+                    pLanguages: ["Java", "C++", "Python", "PHP"]
+                }
+            },
+        };
+
+        const app = new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                cpn
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <cpn></cpn>
+        <cpn></cpn>
+        <cpn></cpn>
+        <button @click="btnClick">点我点我点我</button>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h2>我是子组件</h2>
+        </div>
+    </template>
+    <script>
+        // 子组件
+        const cpn = {
+            template: "#cpn",
+            data() {
+                return {
+                    name: "我是子组件的name"
+                }
+            },
+            methods: {
+                showMessage(event) {
+                    console.log("hello , 子组件方法触发喽");
+                }
+            },
+
+        };
+        // 父组件
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    
+                }
+            },
+            components: {
+                cpn
+            },
+            methods: {
+                btnClick(){
+                    console.log("点我干啥");
+                    console.log(this.$children);
+                    for (let c of this.$children) {
+                        c.showMessage();
+                        console.log(c.name);
+                    }
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .active{
+            color: red;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li :class="getClass(index)" v-for="(item, index) in movies" :key="index" @click="clickMovie(index)">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    currentIndex:-1,
+                    movies:['周润发','周星驰','刘德华','郭富城']
+                }
+            },
+            methods: {
+                clickMovie:function(e){
+                    console.log(e);
+                    this.currentIndex = e;
+                },
+                getClass(index){
+                    if(index==this.currentIndex){
+                        return 'active';
+                    }
+                    return '';
+                }
+            },
+
+        })
+    </script>
+
+</body>
+
+</html>

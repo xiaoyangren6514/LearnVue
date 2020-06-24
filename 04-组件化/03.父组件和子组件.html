@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{message}}
+        <cpnCon2></cpnCon2>
+        <my-cpn></my-cpn>
+    </div>
+
+    <script>
+        // 1.创建组件内构造器对象  子组件
+        const cpnCon1 = Vue.extend({
+            template: `<div><h2>我是标题1</h2>` + `
+        <p>我是内容1，哈哈哈哈哈</p>
+        <p>我是评论1，呵呵呵呵呵</p></div>
+        `
+        });
+        //  父组件
+        const cpnCon2 = Vue.extend({
+            template: `<div><h2>我是标题2</h2>` + `
+        <p>我是内容2，哈哈哈哈哈</p>
+        <p>我是评论2，呵呵呵呵呵</p>
+        <cpnCon1></cpnCon1>
+        </div>
+        `,
+            components: {
+                cpnCon1: cpnCon1
+            }
+        });
+        // 2. 注册组件
+        // Vue.component("my-cpn", cpnCon2);
+        // 3. 使用组件
+
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    message: 'hello world!!!'
+                }
+            },
+            methods: {
+            },
+            components: {
+                "my-cpn": cpnCon2
+            }
+        })
+    </script>
+
+
+</body>
+
+</html>

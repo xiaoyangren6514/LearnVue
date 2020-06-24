@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h2 v-once>初始计数：{{counter}}</h2>
+        <h2>当前计数：{{counter}}</h2>
+        <button v-on:click="add">+</button>
+        <button @click="sub">-</button>
+        <h3 v-html="url">
+           
+        </h3>
+        <h2 v-pre>{{}}</h2>
+        <h3 v-cloak></h3>
+    </div>
+    
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    counter : 0,
+                    url:'<a href="http://www.baidu.com">百度一下</a>'
+                }
+            },
+            methods: {
+                add:function(){
+                    this.counter++;
+                    
+                },
+                sub:function(){
+                    this.counter--;
+                }
+            },
+            beforeCreate() {
+                
+            },
+            created() {
+                
+            },
+        
+        })
+    </script>
+</body>
+</html>

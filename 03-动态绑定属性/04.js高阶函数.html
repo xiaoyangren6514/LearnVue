@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // filter中的回调函数有一个要求，必须返回一个boolean值
+        // true:当返回true时，函数内部会自动将这次回调的n加入到新的数组中
+        // false:当返回false时，函数内部会过滤掉这个的n
+        const nums = [12, 34, 13, 454, 65, 23254, 575, 63];
+        let newNums = nums.filter(function (value, index, array) {
+            console.log(value, index, array);
+            return value < 100;
+        })
+        console.log(newNums);
+
+        // map
+        let newNums2 = newNums.map(function (value) {
+            return value * 2;
+        })
+        console.log("newNums2:" + newNums2);
+
+        // reduce 对数组中所有内容进行汇总
+        let newNums3 = newNums2.reduce(function (previousValue, currentValue) {
+            return previousValue + currentValue;
+        });
+        console.log("newNum3:" + newNums3);
+
+    </script>
+</body>
+
+</html>

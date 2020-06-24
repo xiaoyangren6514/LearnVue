@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .table {
+            border: 1 solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table border="1" width="800" align="center" cellspacing="0" cellpadding="6">
+            <thead>
+                <tr>
+                    <th>
+
+                    </th>
+                    <th>
+                        书籍名称
+                    </th>
+                    <th>
+                        出版日期
+                    </th>
+                    <th>
+                        价格
+                    </th>
+                    <th>
+                        购买数量
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in bookList" :key="index">
+                    <td align="center">{{index+1}}</td>
+                    <td align="center">{{item.name}}</td>
+                    <td align="center">{{item.date}}</td>
+                    <!-- <td align="center">{{"￥"+item.price.toFixed(2)+" 元"}}</td> -->
+                    <td align="center">{{item.price|showPrice}}</td>
+                    <td align="center">
+                        <button @click="sub(index)">-</button>
+                        {{item.count}}
+                        <button @click="add(index)">+</button>
+                    </td>
+                    <td align="center"><button @click="remove(index)">移除</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <span>
+            总价：{{totalPrice}}
+        </span>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    bookList: [
+                        {
+                            id: 1,
+                            name: "第一行Android代码",
+                            date: "2020-05-21",
+                            price: 299,
+                            count: 1
+                        },
+                        {
+                            id: 2,
+                            name: "简单的逻辑学",
+                            date: "1992-11-23",
+                            price: 10,
+                            count: 1
+                        },
+                        {
+                            id: 1,
+                            name: "第一行Android代码",
+                            date: "2100-01-29",
+                            price: 38,
+                            count: 1
+                        },
+
+                    ],
+                }
+            },
+            methods: {
+                add(index) {
+                    this.bookList[index].count++
+                },
+                sub(index) {
+                    this.bookList[index].count--
+                },
+                remove(index) {
+                    if (index == 0) {
+                        this.bookList.splice(0, 1)
+                    } else {
+                        this.bookList.splice(index, index)
+
+                    }
+                }
+            },
+            computed: {
+                totalPrice() {
+                    let price = 0
+                    // for (let i = 0; i < this.bookList.length; i++) {
+                    //     const book = this.bookList[i];
+                    //     price += (book.count * book.price)
+                    // }
+                    // for(let i in this.bookList){
+                    //     const book = this.bookList[i];
+                    //     price += (book.count * book.price)
+                    // }
+                    // for(let book of this.bookList){
+                    //     price += (book.count * book.price)
+                    // }
+
+                    return price
+                }
+            },
+            filters:{
+                showPrice(price){
+                    return "￥"+price.toFixed(2)+"元"
+                }
+            }
+        })
+
+
+       
+    </script>
+</body>
+
+</html>
+

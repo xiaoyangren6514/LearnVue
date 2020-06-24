@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .active {
+            color: red;
+        }
+
+        .disactive {
+            color: seagreen;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 语法糖：
+            v-bind  
+            :
+         -->
+    <div id="app">
+        <img v-bind:src="imgUrl" alt="">
+        <img :src="imgUrl" alt="">
+        <a :href="baiduUrl">百度一下</a>
+        <!-- 动态绑定class属性 -->
+        <br>
+        <div class="">
+            <button @click="changeColor">变色</button>
+            <span :class="{active: isActive}">哈哈哈哈</span>
+            <span :class="isActive?'active':'disactive'">我是天才</span>
+            <button @click="test(1,$event)">哈哈哈</button>
+        </div>
+        <div>
+            <h2 v-if="age<10">过儿童节吧</h2>
+            <h4 v-else-if="age<18">扯淡</h4>
+            <h3 v-else>啊啊</h3>
+        </div>
+        <h2>{{fullName}}</h2>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    imgUrl: 'http://t8.baidu.com/it/u=3571592872,3353494284&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1591281878&t=763e7584f62c7835643c8910bbbba4c0',
+                    baiduUrl: 'http://www.baidu.com',
+                    isActive: true,
+                    age:12
+                }
+            },
+            computed: {
+                fullName() {
+                    return 'a' + ' ' + 'b';
+                },
+                demo:{
+                    set:function(newValue){
+                        console.log(newValue);
+                        
+                    },
+                    get:function(){
+                        return "this is a demo";
+                    }
+                }
+            },
+            methods: {
+                changeColor: function () {
+                    this.isActive = !this.isActive;
+                }
+            },
+
+        })
+    </script>
+
+</body>
+
+</html>

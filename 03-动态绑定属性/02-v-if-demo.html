@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="login" v-if="register===false">
+            用户名：<input type="text" placeholder="请输入用户名">
+            <br>
+            <button @click="doRegister">立即注册</button>
+        </div>
+        <div id="register" v-else>
+            邮箱<input type="text" placeholder="请输入邮箱">
+        </div>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    register: false
+                }
+            },
+            methods: {
+                doRegister() {
+                    this.register = true;
+                }
+            },
+        });
+    </script>
+     
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <cpn :num1="aNum1" :num2="bNum2"
+         @notifynum1changed="num1change"
+         @notifynum2changed="num2change"
+         />
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h2>props:{{ num1 }}</h2>
+            <h3>data:{{ dnum1 }}</h3>
+            <input type="text" v-model="dnum1" @input="num1Changed">
+            <h2>props:{{ num2 }}</h2>
+            <h3>data:{{ dnum2 }}</h3>
+            <input type="text" v-model="dnum2" @input="num2Changed">
+        </div>
+    </template>
+    <script>
+        // 子组件
+        const cpn = {
+            template: "#cpn",
+            data() {
+                return {
+                    dnum1: this.num1,
+                    dnum2: this.num2
+                }
+            },
+            props: {
+                num1: Number,
+                num2: Number
+            },
+            methods: {
+                num1Changed(event) {
+                    this.$emit('notifynum1changed', this.dnum1)
+                },
+                num2Changed(event) {
+                    this.$emit('notifynum2changed', this.dnum2)
+                },
+
+            },
+
+        };
+        // 父组件
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    aNum1: 12,
+                    bNum2: 99
+                }
+            },
+            components: {
+                cpn
+            },
+            methods: {
+                num1change(value) {
+                    this.aNum1 = parseInt(value);
+                },
+                num2change(value) {
+                    this.bNum2 = parseInt(value);
+                }
+            },
+        })
+    </script>
+
+
+</body>
+
+</html>
