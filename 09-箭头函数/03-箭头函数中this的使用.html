@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        setTimeout(() => {
+            // window
+            console.log(this);
+        }, 20);
+        setTimeout(function () {
+            // window
+            console.log(this);
+        })
+        // 箭头函数的this引用的是最近作用域中的this，会向外层作用域一层层查找this，直到有this的定义
+        const obj = {
+            a() {
+                setTimeout(() => {
+                    // obj
+                    console.log(this);
+                }, 10);
+            },
+            b() {
+                setTimeout(function () {
+                    // window
+                    console.log(this);
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>
