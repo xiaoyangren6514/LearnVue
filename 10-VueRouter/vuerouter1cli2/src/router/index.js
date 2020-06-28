@@ -12,6 +12,7 @@ const Home = () => import("../components/home")
 const About = () => import("../components/about")
 const WaitReceive = () => import("../components/WaitReceive")
 const WaitEvaluate = () => import("../components/WaitEvaluate")
+const Profile = () => import("../components/Profile")
 
 // 2. 创建routes对象
 const routes = [
@@ -24,14 +25,14 @@ const routes = [
     component: Home,
     children: [
       {
-        path:"",
-        redirect:"waitreceive"
+        path: "",
+        redirect: "waitreceive"
       },
       {
         path: "waitreceive",
         component: WaitReceive
       },
-       {
+      {
         path: "waitevaluate",
         component: WaitEvaluate
       }
@@ -40,6 +41,10 @@ const routes = [
   {
     path: '/about',
     component: About
+  },
+  {
+    path:'/profile',
+    component: Profile
   }
 ]
 export default new Router({
