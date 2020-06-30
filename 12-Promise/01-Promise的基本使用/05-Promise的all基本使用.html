@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // eg. 两个请求都成功才执行下一步
+        Promise.all([
+            new Promise((resolve, reject) => {
+                // 第一次网络请求
+                setTimeout(() => {
+                    resolve('number1')
+                }, 3000);
+            }),
+            new Promise((resolve, reject) => {
+                // 第二次网络请求
+                setTimeout(() => {
+                    reject('aaaa')
+                    // resolve('num.2')
+                }, 2000);
+            }),
+        ]).then(results => {
+            // results为数组，分别为第一个和第二个请求返回值
+            console.log('all ok')
+        }).catch(error => {
+            console.log('error')
+        })
+    </script>
+</body>
+
+</html>
