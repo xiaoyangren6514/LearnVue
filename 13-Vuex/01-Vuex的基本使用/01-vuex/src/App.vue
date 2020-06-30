@@ -3,9 +3,11 @@
     <h1>{{count}}</h1>
     <button @click="add">+</button>
     <button @click="sub">-</button>
+    <button @click="subFive">+5</button>
     <hello-world></hello-world>
 
     <h3>显示学生喽</h3>
+    <button @click="addStudent">添加学生</button>
     <h3>{{ this.$store.state.students }}</h3>
     <h3>显示年龄大于40的</h3>
     <h3>
@@ -35,7 +37,22 @@ export default {
       this.$store.commit("increament");
     },
     sub() {
+      
       this.$store.commit("decreament");
+    },
+    subFive(){
+      // payload 载荷
+      // 1. 普通提交方式
+      this.$store.commit("increamentCount",5);
+      // 2. 特殊的提交封装
+      // this.$store.commit({
+      //   type:'increamentCount',
+      //   count
+      // })
+    },
+    addStudent(){
+      const stu = {id:6,name:"小红",age:99}
+      this.$store.commit("addStudent",stu)
     }
   }
 };
