@@ -56,6 +56,16 @@ const store = new Vuex.Store({
                 return state.students.filter(s => s.id == id)
             }
         }
+    },
+    actions: {
+        aUpdateInfo(context,payload) {
+            return new Promise((resolve,reject)=>{
+                setTimeout(() => {
+                    context.commit('updateInfo')
+                    resolve()
+                }, 1000);
+            })
+        }
     }
 })
 

@@ -22,9 +22,7 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld";
-import {
-  INCREMENT
-} from './store/mutation.type'
+import { INCREMENT } from "./store/mutation.type";
 export default {
   name: "App",
   computed: {
@@ -38,24 +36,27 @@ export default {
   methods: {
     add() {
       this.$store.commit(INCREMENT);
+      // 调用actions中方法
+      this.$store.dispatch("aUpdateInfo", "我是payload").then(res => {
+        console.log("内部执行成功");
+      });
     },
     sub() {
-      
       this.$store.commit("decreament");
     },
-    subFive(){
+    subFive() {
       // payload 载荷
       // 1. 普通提交方式
-      this.$store.commit("increamentCount",5);
+      this.$store.commit("increamentCount", 5);
       // 2. 特殊的提交封装
       // this.$store.commit({
       //   type:'increamentCount',
       //   count
       // })
     },
-    addStudent(){
-      const stu = {id:6,name:"小红",age:99}
-      this.$store.commit("addStudent",stu)
+    addStudent() {
+      const stu = { id: 6, name: "小红", age: 99 };
+      this.$store.commit("addStudent", stu);
     }
   }
 };
