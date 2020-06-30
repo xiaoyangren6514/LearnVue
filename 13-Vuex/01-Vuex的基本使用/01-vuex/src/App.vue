@@ -1,5 +1,13 @@
 <template>
   <div id="app">
+    <h2>modules中内容</h2>
+    <div>
+      {{ $store.state.a.name }}
+      <h3>{{ $store.getters.fullName }}</h3>
+      <h3>{{ $store.getters.fullName2 }}</h3>
+      <h3>{{ $store.getters.fullName3 }}</h3>
+      <button @click="asyncUpdateName">异步修改名字</button>
+    </div>
     <h1>{{count}}</h1>
     <button @click="add">+</button>
     <button @click="sub">-</button>
@@ -57,6 +65,9 @@ export default {
     addStudent() {
       const stu = { id: 6, name: "小红", age: 99 };
       this.$store.commit("addStudent", stu);
+    },
+    asyncUpdateName(){
+      this.$store.dispatch('aUpdateName')
     }
   }
 };
