@@ -22,6 +22,9 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld";
+import {
+  INCREMENT
+} from './store/mutation.type'
 export default {
   name: "App",
   computed: {
@@ -34,7 +37,7 @@ export default {
   },
   methods: {
     add() {
-      this.$store.commit("increament");
+      this.$store.commit(INCREMENT);
     },
     sub() {
       
