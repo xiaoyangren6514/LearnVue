@@ -23,6 +23,9 @@ const routes = [
   {
     path: '/home',
     component: Home,
+    meta: {
+      title: "首页"
+    },
     children: [
       {
         path: "",
@@ -30,7 +33,10 @@ const routes = [
       },
       {
         path: "waitreceive",
-        component: WaitReceive
+        component: WaitReceive,
+        meta: {
+          title: "待收货"
+        },
       },
       {
         path: "waitevaluate",
@@ -40,15 +46,34 @@ const routes = [
   },
   {
     path: '/about',
-    component: About
+    component: About,
+    meta: {
+      title: "关于"
+    },
   },
   {
-    path:'/profile',
-    component: Profile
+    path: '/profile',
+    component: Profile,
+    meta: {
+      title: "单干"
+    },
   }
 ]
-export default new Router({
+const router = new Router({
   routes,
   mode: 'history',
   linkActiveClass: 'active'
 })
+
+// 前置钩子
+router.beforeEach((to, from, next) => {
+  document.title = to.matched[0].meta.title
+  next()
+})
+
+// 后置狗子
+router.afterEach((to,from)=>{
+  console.log("after")
+})
+
+export default router

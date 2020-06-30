@@ -7,7 +7,7 @@
     <button @click="homeClick">首页2</button>
     <button @click="aboutClick">关于2</button>
     <button @click="profileClick">我的</button>
-  </div>
+  </div> 
 </template>
 
 <script>
