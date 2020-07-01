@@ -79,3 +79,48 @@ const { name, age } = obj
 const names = ['why', 'a', 'b']
 
 const [name1, name2, name3] = name
+
+
+// 配置信息
+axios.defaults.baseURL = 'http://123.207.32.32:8000'
+axios.defaults.timeout = 5000
+axios({
+  url: '/home/multidata'
+}).then(res => {
+  console.log('使用配置信息喽')
+  console.log(res)
+})
+
+
+// 之前都是使用的全局axios，下面创建独立的axios实例
+const instance1 = axios.create({
+  baseURL: 'http://123.207.32.32:8000',
+  timeout: 5000
+})
+instance1({
+  url: '/home/multidata'
+}).then(res => {
+  console.log('使用axios实例1')
+  console.log(res)
+})
+
+// 使用axios封装
+// 方案一
+import { request } from './network/request'
+// Request({
+//   url: '',
+//   success: function (res) {
+
+//   },
+//   failure: function (error) {
+
+//   }
+// })
+
+request({
+  url: ''
+}).then(res => {
+
+}).catch(error => {
+
+})
