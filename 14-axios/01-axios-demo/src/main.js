@@ -118,9 +118,10 @@ import { request } from './network/request'
 // })
 
 request({
-  url: ''
+  url: '/home/multidata'
 }).then(res => {
-
+  console.log('aaa')
+  console.log(res)
 }).catch(error => {
-
+  console.log(error)
 })
